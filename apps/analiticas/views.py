@@ -33,15 +33,15 @@ def getReport(request):
     for e in eventos:
         lst_eventos.append(e)
 
-    print(type(lst_eventos))
-    print(lst_eventos)
     #json_report = json.dumps(lst_eventos)
     json_report = JSONEncoder().encode(lst_eventos)
     salida = {
         'collection' : json_report
     }
-    print(salida)
+
     reporte = JSONEncoder().encode(salida)
+    print(reporte)
+    print(type(reporte))
     #return HttpResponse(json_report, content_type='application/json')
     return HttpResponse(reporte, content_type='application/json')
 
