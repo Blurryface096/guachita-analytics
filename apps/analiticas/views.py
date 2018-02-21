@@ -32,18 +32,12 @@ def getReport(request):
     lst_eventos = []
     for e in eventos:
         lst_eventos.append(e)
-
-    #json_report = json.dumps(lst_eventos)
-    json_report = JSONEncoder().encode(lst_eventos)
-    salida = {
-        'collection' : json_report
+    temp = {
+        'collection' : lst_eventos
     }
-    reporte = JSONEncoder().encode(salida)
-    final = json.loads(reporte)
-    print(final)
-    print(type(final))
-    #return HttpResponse(json_report, content_type='application/json')
-    return HttpResponse(final, content_type='application/json')
+    json_report = JSONEncoder().encode(temp)
+
+    return HttpResponse(json_report, content_type='application/json')
 
 
 class JSONEncoder(json.JSONEncoder):
