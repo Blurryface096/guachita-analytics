@@ -9,12 +9,13 @@ def saveEvent(request):
     db = client['guachita-analytics']
 
     print(request.POST)
-    evento = request.POST.get['data'][0]
+    eventox = request.POST.__getitem__('data')
+    evento = eventox[0]
     db.eventos.save(evento)
 
     for e in db.eventos.find():
         print(e)
-        
+
     return HttpResponse("")
 
 @csrf_exempt
