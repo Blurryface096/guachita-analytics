@@ -41,7 +41,7 @@ def getReport(request):
         'collection' : json_report
     }
     print(salida)
-    reporte = json.loads(salida)
+    reporte = JSONEncoder().encode(salida)
     #return HttpResponse(json_report, content_type='application/json')
     return HttpResponse(reporte, content_type='application/json')
 
