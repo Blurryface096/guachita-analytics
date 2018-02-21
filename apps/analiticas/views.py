@@ -38,12 +38,12 @@ def getReport(request):
     salida = {
         'collection' : json_report
     }
-
     reporte = JSONEncoder().encode(salida)
-    print(reporte)
-    print(type(reporte))
+    final = json.loads(reporte)
+    print(final)
+    print(type(final))
     #return HttpResponse(json_report, content_type='application/json')
-    return HttpResponse(reporte, content_type='application/json')
+    return HttpResponse(final, content_type='application/json')
 
 
 class JSONEncoder(json.JSONEncoder):
