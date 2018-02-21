@@ -8,7 +8,9 @@ def saveEvent(request):
     client = MongoClient('mongodb://admin:software2@ds241578.mlab.com:41578/guachita-analytics')
     db = client['guachita-analytics']
 
-    evento = request.POST.__getitem__('data')
+    eventox = request.POST.__getitem__('data')
+    print(eventox)
+    evento = serializers.serialize('json', eventox)
     db.eventos.save(evento)
 
     for e in db.eventos.find():
