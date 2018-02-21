@@ -10,7 +10,7 @@ def saveEvent(request):
     db = client['guachita-analytics']
 
     eventox = request.POST.__getitem__('data')
-    print(eventox)
+    #print(eventox)
     evento = json.loads(eventox)
     print('------------------------')
     print(evento)
