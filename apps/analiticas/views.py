@@ -8,18 +8,13 @@ def saveEvent(request):
     client = MongoClient('mongodb://admin:software2@ds241578.mlab.com:41578/guachita-analytics')
     db = client['guachita-analytics']
 
-    print(request.method)
     print(request.POST)
-    evento = {
-        'tipo' : 'click',
-        'URL_Actual' : 'www.guachita.com',
-        'URL_Destino' : 'www.guachita.com/home',
-        'Browser' : 'Mozilla',
-        'Plataforma' : 'Win32',
-        'Language' : 'en-US',
-    }
-
+    evento = request.POST.get['data'][0]
     db.eventos.save(evento)
+
+    for e in db.eventos.find():
+        print(e)
+        
     return HttpResponse("")
 
 @csrf_exempt
