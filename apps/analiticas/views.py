@@ -40,7 +40,7 @@ def getReport(request):
     salida = {
         'collection' : json_report
     }
-
+    print(salida)
     #return HttpResponse(json_report, content_type='application/json')
     return HttpResponse(salida, content_type='application/json')
 
