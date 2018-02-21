@@ -10,7 +10,11 @@ def saveEvent(request):
 
     eventox = request.POST.__getitem__('data')
     print(eventox)
+    print(type(eventox))
     evento = serializers.serialize('json', eventox)
+    print('------------------------')
+    print(evento)
+    print(type(evento))
     db.eventos.save(evento)
 
     for e in db.eventos.find():
