@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from django.http import HttpResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+import simplejson as json
 
 @csrf_exempt
 def saveEvent(request):
