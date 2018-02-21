@@ -10,17 +10,12 @@ def saveEvent(request):
     db = client['guachita-analytics']
 
     eventox = request.POST.__getitem__('data')
-    print(eventox)
-    print(type(eventox))
-    #evento = serializers.serialize('json', eventox)
+
     evento = json.loads(eventox)
     print('------------------------')
     print(evento)
-    print(type(evento))
+    print('------------------------')
     db.eventos.save(evento)
-
-    for e in db.eventos.find():
-        print(e)
 
     return HttpResponse("")
 
