@@ -19,7 +19,7 @@ def saveEvent(request):
         'Language' : 'en-US',
     }
 
-    #db.eventos.save(evento)
+    db.eventos.save(evento)
     return HttpResponse("")
 
 @csrf_exempt
