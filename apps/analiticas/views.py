@@ -39,6 +39,23 @@ def getReport(request):
 
     return HttpResponse(json_report, content_type='application/json')
 
+@csrf_exempt
+def getVistasDiarias(request):
+    client = MongoClient('mongodb://admin:software2@ds241578.mlab.com:41578/guachita-analytics')
+    db = client['guachita-analytics']
+    pipeline = [{"$group" : {"_id":"$Date", "total": {"$sum":1} } }]
+    eventos = db.eventos.aggregate(pipeline)
+    #eventos = db.eventos.find()
+    lst_eventos = []
+    for e in eventos:
+        lst_eventos.append(e)
+    temp = {
+        'visitas' : lst_eventos
+    }
+    json_report = JSONEncoder().encode(temp)
+
+    return HttpResponse(json_report, content_type='application/json')
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):

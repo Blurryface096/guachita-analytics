@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.analiticas.views import saveEvent, getReport
+from apps.analiticas.views import saveEvent, getReport, getVistasDiarias
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sendEvent/', saveEvent),
     path('getReport/', getReport),
+    path('getVistasDiarias/', getVistasDiarias),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
