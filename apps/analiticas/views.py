@@ -47,7 +47,7 @@ def getVistasDiarias(request):
     pipeline = [
         {"$group" : {"_id":"$Date", "total": {"$sum":1}},
         {"$sort": SON([("total", -1), ("_id", -1)])}
-    }]
+    ]
     eventos = db.eventos.aggregate(pipeline)
     #eventos = db.eventos.find()
     lst_eventos = []
