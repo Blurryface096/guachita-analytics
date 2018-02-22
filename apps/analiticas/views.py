@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
 import json as json2
 from bson import ObjectId
+from bson.son import SON
 
 
 
@@ -43,7 +44,10 @@ def getReport(request):
 def getVistasDiarias(request):
     client = MongoClient('mongodb://admin:software2@ds241578.mlab.com:41578/guachita-analytics')
     db = client['guachita-analytics']
-    pipeline = [{"$group" : {"_id":"$Date", "total": {"$sum":1} } }]
+    pipeline = [
+        {"$group" : {"_id":"$Date", "total": {"$sum":1}},
+        {"$sort": SON([("total", -1), ("_id", -1)])}
+    }]
     eventos = db.eventos.aggregate(pipeline)
     #eventos = db.eventos.find()
     lst_eventos = []
