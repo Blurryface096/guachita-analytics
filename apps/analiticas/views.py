@@ -43,7 +43,7 @@ def getReport(request):
 def getVistasDiarias(request):
     client = MongoClient('mongodb://admin:software2@ds241578.mlab.com:41578/guachita-analytics')
     db = client['guachita-analytics']
-    pipeline = [{"$group" : {"_id":"$Date", "total": {"$sum":1} }, "$orderby" : {"total": {"$sum" : 1 }} }]
+    pipeline = [{"$group" : {"_id":"$Date", "total": {"$sum":1} } }]
     eventos = db.eventos.aggregate(pipeline)
     #eventos = db.eventos.find()
     lst_eventos = []
